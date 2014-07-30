@@ -1,0 +1,72 @@
+﻿@using System.Web.Script.Serialization;
+@using MvcApplication2.Controllers
+@model MvcApplication2.Models.Application
+
+@{
+    ViewBag.Title = "Application";
+}
+
+@using (Html.BeginForm(null, null, FormMethod.Post))
+{
+
+    <h2 data-bind="text: applicationName"></h2>
+    <div class="form-group">
+        @Html.LabelFor(f => f.Name)
+        @Html.TextBoxFor(f => f.Name, new { data_bind = "value: applicationName, valueUpdate: 'afterkeydown'" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(f => f.Created)
+        @Html.TextBoxFor(f => f.Created)
+    </div>
+    <input type="submit" class="submit btn"/>
+    <div class="hidden">
+        @Html.HiddenFor(f => f.Id)
+    </div>
+}
+
+
+@*<form data-bind="submit:addLink">
+    Add item: <input type="text" data-bind='value:linkToAdd, valueUpdate: "afterkeydown"' />
+    <button class="btn btn-primary btn-small" type="submit" data-bind="enable: linkToAdd().length > 0">Add</button>
+</form>
+ 
+<p>Your values:</p>
+<select multiple="multiple" height="5" data-bind="options:allLinks, selectedOptions:selectedLinks"> </select>
+ 
+<div>
+    <button class="btn btn-primary btn-small" data-bind="click: removeSelected, enable: selectedLinks().length > 0">Remove</button>
+</div>
+*@
+
+@section scripts{
+    @Scripts.Render("~/bundles/knockout")
+    <script>
+        var linkModel = function() {
+            var self = this;
+            self.applicationName = ko.observable("@Model.Name");
+        }
+//            self.links = jQuery.parseJSON(document.getElementById("LinksFromData").value);
+//            var linkedItems = [];
+//            self.links.forEach(function(value) {
+//                linkedItems.push(value.ToApplication.Name);
+//            });
+//            self.linkToAdd = ko.observable("");
+//            self.allLinks = ko.observableArray(linkedItems);
+//            self.selectedLinks = ko.observableArray(["Ham"]);
+
+
+//            self.addLink = function() {
+//                if ((this.linkToAdd() != "") && (self.allLinks.indexOf(self.linkToAdd()) < 0))
+//                    this.allLinks.push(self.linkToAdd());
+//                self.linkToAdd("");
+//            };
+
+//            self.removeSelected = function() {
+//                self.allLinks.removeAll(this.selectedLinks());
+//                self.selectedLinks([]);
+//            };
+//        }
+
+        ko.applyBindings(new linkModel());
+    </script>   
+}
