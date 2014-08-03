@@ -1,0 +1,5 @@
+﻿@using Humanizer
+@model MvcApplication2.Models.Category
+
+@Html.DropDownListFor(m => m, new SelectList(Enum.GetNames(Model.GetType()).Select(element => element.Humanize(LetterCasing.Title)), Model.Humanize()))
+

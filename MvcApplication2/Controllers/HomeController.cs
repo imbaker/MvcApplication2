@@ -40,7 +40,7 @@ namespace MvcApplication2.Controllers
         [GET("Application")]
         public ActionResult Application()
         {
-            var application = new Models.Application() { Id = 1, Name = "Textpad", Manufacturer="Helios Software" };
+            var application = new Models.Application() { Id = 1, Name = "Textpad", Manufacturer="Helios Software", Created = DateTime.Now };
             application.User = User.Identity.Name;
             var links = new List<Link>()
                         {
