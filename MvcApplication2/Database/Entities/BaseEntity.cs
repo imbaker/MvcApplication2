@@ -1,4 +1,4 @@
-namespace MvcApplication2.Entities
+namespace MvcApplication2.Database.Entities
 {
     using System;
 

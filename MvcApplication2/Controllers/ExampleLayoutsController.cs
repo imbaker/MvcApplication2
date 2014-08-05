@@ -1,46 +1,42 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-
-namespace BootstrapMvcSample.Controllers
+﻿namespace MvcApplication2.Controllers
 {
+    using System.Web.Mvc;
+
     public class ExampleLayoutsController : Controller
     {
         public ActionResult Starter()
         {
-            return View();
+            return this.View();
         }
 
         public ActionResult Marketing()
         {
-            return View();
+            return this.View();
         }
 
         public ActionResult Fluid()
         {
-            return View();
+            return this.View();
         }
 
         public ActionResult Narrow()
         {
-            return View();
+            return this.View();
         }
 
         public ActionResult SignIn()
         {
-            return View();
+            return this.View();
         }
 
         public ActionResult StickyFooter()
         {
-            return View("TBD");
+            return this.View("TBD");
         }
 
         public ActionResult Carousel()
         {
-            return View("TBD");
+            return this.View("TBD");
         }
     }
 }

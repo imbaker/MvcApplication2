@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace MvcApplication2.App_Start
 {
-    using System.Web.UI;
 
     using AutoMapper;
+    using Entities = MvcApplication2.Database.Entities;
+    using Models = MvcApplication2.Models;
+
 
     public class AutomapperConfig
     {

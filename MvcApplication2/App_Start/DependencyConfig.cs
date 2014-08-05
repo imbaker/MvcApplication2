@@ -10,7 +10,8 @@ namespace MvcApplication2.App_Start
 
     using Autofac.Integration.Mvc;
 
-    using MvcApplication2.Entities.Interfaces;
+    using MvcApplication2.Database;
+    using MvcApplication2.Database.Entities.Interfaces;
 
     public class DependencyConfig
     {

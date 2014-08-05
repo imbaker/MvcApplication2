@@ -1,31 +1,20 @@
 ﻿using System.Web.Mvc;
 using MvcApplication2.Controllers;
-using MvcApplication2.Models;
 using NSubstitute;
 using Xunit;
 
 namespace MvcApplication2.Tests.Controllers
 {
-    using System.Collections;
     using System.Collections.Generic;
-    using System.Data.Entity;
     using System.Linq;
     using System.Security.Principal;
     using System.Web;
-    using System.Web.UI;
-    using System.Web.UI.WebControls;
-
     using Moq;
-
-    using MvcApplication2.Entities;
-    using MvcApplication2.Entities.Interfaces;
-
+    using MvcApplication2.Database.Entities.Interfaces;
     using Ploeh.AutoFixture;
-    using Ploeh.AutoFixture.Xunit;
+    using Entities = MvcApplication2.Database.Entities;
 
-    using Xunit.Extensions;
 
-    using Application = MvcApplication2.Models.Application;
 
     public class HomeControllerTest
     {

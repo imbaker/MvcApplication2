@@ -10,12 +10,12 @@ namespace MvcApplication2.Controllers
     using System.Data.Entity;
     using System.Web.Http.ModelBinding;
 
-    using MvcApplication2.Entities.Interfaces;
+    using MvcApplication2.Database.Entities.Interfaces;
     using MvcApplication2.Models;
 
     using Newtonsoft.Json;
 
-    using Application = MvcApplication2.Entities.Application;
+    using Application = MvcApplication2.Database.Entities.Application;
 
     public class HomeController : Controller
     {

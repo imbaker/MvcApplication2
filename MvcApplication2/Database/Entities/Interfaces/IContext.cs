@@ -4,13 +4,9 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
-namespace MvcApplication2.Entities.Interfaces
+namespace MvcApplication2.Database.Entities.Interfaces
 {
-    using System;
-    using System.Collections.Generic;
     using System.Data.Entity;
-    using System.Linq;
-    using System.Text;
 
     /// <summary>
     /// TODO: Update summary.

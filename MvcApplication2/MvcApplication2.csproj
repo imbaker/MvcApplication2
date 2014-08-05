@@ -170,11 +170,11 @@
     <Compile Include="Controllers\BootstrapBaseController.cs" />
     <Compile Include="Controllers\ExampleLayoutsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Entities\BaseEntity.cs" />
-    <Compile Include="Entities\Db.cs" />
-    <Compile Include="Entities\Application.cs" />
-    <Compile Include="Entities\Interfaces\IContext.cs" />
-    <Compile Include="Entities\Link.cs" />
+    <Compile Include="Database\Entities\BaseEntity.cs" />
+    <Compile Include="Database\Db.cs" />
+    <Compile Include="Database\Entities\Application.cs" />
+    <Compile Include="Database\Entities\Interfaces\IContext.cs" />
+    <Compile Include="Database\Entities\Link.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -346,6 +346,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Database\Repositories\Interfaces\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201407242043085_Change 01.resx">

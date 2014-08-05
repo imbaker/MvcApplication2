@@ -1,10 +1,8 @@
-﻿namespace MvcApplication2
+﻿namespace MvcApplication2.Database
 {
     using System.Data.Entity;
-    using System.Data.Entity.Core;
-    using System.Runtime.InteropServices;
 
-    using MvcApplication2.Entities;
+    using MvcApplication2.Database.Entities;
 
     public class Db : DbContext, Entities.Interfaces.IContext
     {

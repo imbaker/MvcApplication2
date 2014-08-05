@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 
-namespace MvcApplication2.Entities
+namespace MvcApplication2.Database.Entities
 {
     public class Application : BaseEntity 
     {

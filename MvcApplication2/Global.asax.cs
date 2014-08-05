@@ -8,6 +8,7 @@ namespace MvcApplication2
     using System.Data.Entity;
 
     using MvcApplication2.App_Start;
+    using MvcApplication2.Database;
     using MvcApplication2.Migrations;
 
     // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
@@ -28,7 +29,7 @@ namespace MvcApplication2
 
             AutomapperConfig.Register();
 
-            Database.SetInitializer<Db>(new MigrateDatabaseToLatestVersion<Db, Configuration>());
+            System.Data.Entity.Database.SetInitializer<Db>(new MigrateDatabaseToLatestVersion<Db, Configuration>());
         }
     }
 }
