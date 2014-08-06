@@ -121,6 +121,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\CategoryControllerTest.cs" />
     <Compile Include="Fakes\FakeDbSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
@@ -136,6 +137,9 @@
       <Project>{5FAE24A1-8995-49BD-9202-46F9A1CB2107}</Project>
       <Name>MvcApplication2</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Database\Repositories\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

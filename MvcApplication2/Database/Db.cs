@@ -4,7 +4,7 @@
 
     using MvcApplication2.Database.Entities;
 
-    public class Db : DbContext, Entities.Interfaces.IContext
+    public class Db : DbContext
     {
         public Db()
             : base("DefaultConnection")

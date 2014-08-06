@@ -168,13 +168,20 @@
     <Compile Include="BootstrapSupport\HtmlHelpers\Paging.cs" />
     <Compile Include="BootstrapSupport\ViewHelperExtensions.cs" />
     <Compile Include="Controllers\BootstrapBaseController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\ExampleLayoutsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Database\Entities\BaseEntity.cs" />
     <Compile Include="Database\Db.cs" />
     <Compile Include="Database\Entities\Application.cs" />
+    <Compile Include="Database\Entities\Category.cs" />
     <Compile Include="Database\Entities\Interfaces\IContext.cs" />
     <Compile Include="Database\Entities\Link.cs" />
+    <Compile Include="Database\Repositories\Interfaces\IApplicationRepository.cs" />
+    <Compile Include="Database\Repositories\Interfaces\IRepository.cs" />
+    <Compile Include="Database\Repositories\Interfaces\IUnitOfWork.cs" />
+    <Compile Include="Database\Repositories\Repository.cs" />
+    <Compile Include="Database\Repositories\UnitOfWork.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -188,6 +195,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Application.cs" />
+    <Compile Include="Models\CategoryIndexViewModel.cs" />
     <Compile Include="Models\HomeInputModel.cs" />
     <Compile Include="Models\Link.cs" />
     <Compile Include="NavigationRoutes\INavigationRouteFilter.cs" />
@@ -346,7 +354,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Database\Repositories\Interfaces\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201407242043085_Change 01.resx">
