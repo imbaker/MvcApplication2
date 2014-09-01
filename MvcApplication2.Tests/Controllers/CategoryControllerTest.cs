@@ -2,6 +2,8 @@
 {
     using System.Linq;
 
+    using FluentAssertions;
+
     using Moq;
 
     using MvcApplication2.App_Start;
@@ -20,7 +22,7 @@
         private IUnitOfWork UnitOfWorkMock;
 
         [SetUp]
-        public void CategoryControllerTest_SetUp()
+        public void SetUp()
         {
             AutomapperConfig.Register();
 
@@ -44,7 +46,7 @@
             var result = new CategoryController(this.UnitOfWorkMock).Index() as ViewResult;
 
             // Assert
-            Assert.That(result.ViewName, Is.EqualTo("Index").IgnoreCase);
+            result.ViewName.Should().BeEquivalentTo("Index");
         }
 
         [Test]
@@ -55,7 +57,7 @@
             var model = result.Model;
 
             // Assert
-            Assert.That(model, Is.TypeOf<CategoryIndexViewModel>());
+            model.Should().BeOfType<CategoryIndexViewModel>();
         }
 
         [Test]
@@ -83,7 +85,7 @@
             var numberOfItems = unitOfWorkMock.Object.CategoryRepository.GetAll().Count();
 
             // Assert
-            Assert.That(numberOfItems, Is.EqualTo(2));
+            numberOfItems.Should().Be(2, "because repository contains two items");
         }
     }
 }

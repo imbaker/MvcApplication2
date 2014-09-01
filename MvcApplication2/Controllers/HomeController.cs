@@ -16,24 +16,25 @@ namespace MvcApplication2.Controllers
     using Newtonsoft.Json;
 
     using Application = MvcApplication2.Database.Entities.Application;
+    using MvcApplication2.Database.Repositories.Interfaces;
 
     public class HomeController : Controller
     {
-        private IContext Context { get; set; }
+        private IUnitOfWork UnitOfWork { get; set; }
 
-        public HomeController(IContext context = null)
+        public HomeController(IUnitOfWork unitOfWork)
         {
-            Context = context;
+            this.UnitOfWork = unitOfWork;
         }
 
 
         [GET("/")]
-        public ViewResult Index()
+        public ActionResult Index()
         {
             ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
-            var applications = Context.Applications.ToList();
-
-            return View(applications);
+            var repository = this.UnitOfWork.ApplicationRepository;
+            var applications = repository.GetAll();
+            return View("Index", applications);
         }
 
         [HttpGet]

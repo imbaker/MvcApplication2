@@ -1,22 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
-namespace MvcApplication2.Tests.Database.Repositories
+namespace MvcApplication2.Database.Repositories
 {
-    using MvcApplication2.Database.Entities.Interfaces;
+    using System.Data.Entity;
+
+    using MvcApplication2.Database;
     using MvcApplication2.Database.Repositories.Interfaces;
 
     class Repository<T> : IRepository<T> where T : class
     {
-        private IContext context;
-
         private bool disposed;
+        private Db Context;
 
-        protected Repository(IContext context)
+        private DbSet<T> dbSet;
+
+        public Repository(Db context)
         {
-            this.context = context;
+            this.Context = context;
+            this.dbSet = Context.Set<T>();
             this.disposed = false;
         }
 
@@ -37,7 +39,7 @@ namespace MvcApplication2.Tests.Database.Repositories
 
         public IQueryable<T> GetAll()
         {
-            throw new NotImplementedException();
+            return Context.Set<T>();
         }
 
         public T GetById(int id)

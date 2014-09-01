@@ -11,7 +11,8 @@
         {
         }
 
-        public IDbSet<Application> Applications { get; set; }
-        public IDbSet<Link> Links { get; set; } 
+        public DbSet<Application> Applications { get; set; }
+        public DbSet<Category> Categories { get; set; } 
+        public DbSet<Link> Links { get; set; } 
     }
 }

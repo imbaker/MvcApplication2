@@ -12,6 +12,8 @@ namespace MvcApplication2.App_Start
 
     using MvcApplication2.Database;
     using MvcApplication2.Database.Entities.Interfaces;
+    using MvcApplication2.Database.Repositories;
+    using MvcApplication2.Database.Repositories.Interfaces;
 
     public class DependencyConfig
     {
@@ -20,7 +22,8 @@ namespace MvcApplication2.App_Start
             var builder = new ContainerBuilder();
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
 
-            builder.RegisterType<Db>().As<IContext>().InstancePerHttpRequest();
+            builder.RegisterType<Db>().AsSelf();
+            builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerHttpRequest();
 
             IContainer container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));

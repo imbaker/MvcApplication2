@@ -27,7 +27,7 @@ namespace MvcApplication2.Models
         public string User { get; set; }
     }
 
-    public enum Category
+    public enum CategoryEnum
     {
         WindowsApplication,
         BrowserApplication,

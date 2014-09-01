@@ -1,17 +1,16 @@
 namespace MvcApplication2.Migrations
 {
     using System;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
-    using System.Linq;
 
     using MvcApplication2.Database;
+    using MvcApplication2.Database.Entities;
 
     internal sealed class Configuration : DbMigrationsConfiguration<Db>
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(Db context)
@@ -28,6 +27,9 @@ namespace MvcApplication2.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+            context.Applications.AddOrUpdate( new Application() { Category = "Desktop Application", Name = "Picasa", Created = new DateTime(2014,8,1), Modified = new DateTime(2014, 8, 2)});
+
+            context.Categories.AddOrUpdate(new Category(){Name="Category 1", Created=new DateTime(2014,9,1), Modified = new DateTime(2014,9,2)});
         }
     }
 }

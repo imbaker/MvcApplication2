@@ -1,78 +1,69 @@
 ﻿using System.Web.Mvc;
 using MvcApplication2.Controllers;
-using NSubstitute;
-using Xunit;
+using Moq;
+using NUnit.Framework;
 
 namespace MvcApplication2.Tests.Controllers
 {
     using System.Collections.Generic;
-    using System.Linq;
     using System.Security.Principal;
     using System.Web;
-    using Moq;
-    using MvcApplication2.Database.Entities.Interfaces;
-    using Ploeh.AutoFixture;
+
+    using FluentAssertions;
+
+    using MvcApplication2.Database.Repositories.Interfaces;
+
+    using MvcContrib.TestHelper;
+
     using Entities = MvcApplication2.Database.Entities;
-
-
 
     public class HomeControllerTest
     {
-        public HomeControllerTest ()
-        {
-            var fixture = new Fixture().Customize(new MultipleCustomization());
-            fixture.Behaviors.Remove(new ThrowingRecursionBehavior());
-            fixture.Behaviors.Add(new OmitOnRecursionBehavior());
-        }
-
-        [Fact]
+        [Test]
         public void Application_WhenActionExecutes_ApplicationViewIsReturned()
         {
             // Arrange
-            var fakeHttpContext = new Mock<HttpContextBase>();
             var principal = new GenericPrincipal(new GenericIdentity("User"), null);
+            var fakeHttpContext = Mock.Of<HttpContextBase>(m => m.User == principal);
 
-            fakeHttpContext.Setup(t => t.User).Returns(principal);
-            var controllerContext = new Mock<ControllerContext>();
-            controllerContext.Setup(t => t.HttpContext).Returns(fakeHttpContext.Object);
+            var controllerContext = Mock.Of<ControllerContext>(m => m.HttpContext == fakeHttpContext);
 
-            var controller = new HomeController();
-            controller.ControllerContext = controllerContext.Object;
+            var controller = new HomeController(Mock.Of<IUnitOfWork>());
+            controller.ControllerContext = controllerContext;
 
             // Act
             var result = controller.Application() as ViewResult;
 
             // Assert
-            Assert.Equal("Application", result.ViewName);
+            result.ViewName.Should().BeEquivalentTo("Application");
         }
 
-        [Fact]
+        [Test]
         public void About_WhenActionExecutes_AboutViewIsReturned ()
         {
             // Arrange
-            var controller = new HomeController();
+            var controller = new HomeController(Mock.Of<IUnitOfWork>());
 
             // Act
-            var result = controller.About() as ViewResult;
+            var result = controller.About();
 
             // Assert
-            Assert.Equal("About", result.ViewName);
+            result.AssertViewRendered().ForView("About");
         }
 
-        [Fact]
+        [Test]
         public void Index_WhenActionExecutes_ReturnsList()
         {
             // Arrange
             var inMemoryItems = new Fakes.FakeDbSet<Entities.Application>
                                 {
-                                    new Entities.Application() { Id = 1, Name = "One" },
-                                    new Entities.Application() { Id = 2, Name = "Two" },
-                                    new Entities.Application() { Id = 3, Name = "Three" },
-                                    new Entities.Application() { Id = 4, Name = "Four" }
+                                    new Entities.Application { Id = 1, Name = "One" },
+                                    new Entities.Application { Id = 2, Name = "Two" },
+                                    new Entities.Application { Id = 3, Name = "Three" },
+                                    new Entities.Application { Id = 4, Name = "Four" }
                                 };
 
-            var mockData = Substitute.For<IContext>();
-            mockData.Applications.Returns(inMemoryItems);
+            var mockData = Mock.Of<IUnitOfWork>(m => m.ApplicationRepository.GetAll() == inMemoryItems);
 
             var controller = new HomeController(mockData);
 
@@ -81,29 +72,28 @@ namespace MvcApplication2.Tests.Controllers
             var applicationsFromView = (IEnumerable<Entities.Application>)viewResult.Model;
 
             // Assert
-            Assert.NotNull(applicationsFromView);
-            Assert.Equal(4, applicationsFromView.Count());
-            Assert.Equal(1,applicationsFromView.First().Id);
+            applicationsFromView.Should().HaveCount(4, "because repository contains four items");
+            applicationsFromView.Should().ContainInOrder(inMemoryItems, "because item order should be unchanged");
         }
 
-        [Fact]
+        [Test]
         public void Create_WhenActionExecutes_CreateViewIsReturned()
         {
             // Arrange
-            var controller = new HomeController();
+            var controller = new HomeController(Mock.Of<IUnitOfWork>());
 
             // Act
-            var result = controller.Create() as ViewResult;
+            var result = controller.Create();
 
             // Assert
-            Assert.Equal("Create", result.ViewName);
+            result.AssertViewRendered().ForView("Create");
         }
 
-        [Fact]
+        [Test]
         public void Create_WhenPostActionExecutesWithInvalidModel_CreateViewIsReturned()
         {
             // Arrange
-            var controller = new HomeController();
+            var controller = new HomeController(Mock.Of<IUnitOfWork>());
             var model = new Models.Application();
             controller.ModelState.AddModelError("key", "error message");
 
@@ -111,7 +101,7 @@ namespace MvcApplication2.Tests.Controllers
             var result = controller.Create(model) as ViewResult;
 
             // Assert
-            Assert.Equal("Create", result.ViewName);
+            result.AssertViewRendered().ForView("Create");
         }
     }
 }

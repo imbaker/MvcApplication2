@@ -178,6 +178,7 @@
     <Compile Include="Database\Entities\Interfaces\IContext.cs" />
     <Compile Include="Database\Entities\Link.cs" />
     <Compile Include="Database\Repositories\Interfaces\IApplicationRepository.cs" />
+    <Compile Include="Database\Repositories\Interfaces\ICategoryRepository.cs" />
     <Compile Include="Database\Repositories\Interfaces\IRepository.cs" />
     <Compile Include="Database\Repositories\Interfaces\IUnitOfWork.cs" />
     <Compile Include="Database\Repositories\Repository.cs" />
@@ -193,9 +194,14 @@
     <Compile Include="Migrations\201407292051219_Link changes.Designer.cs">
       <DependentUpon>201407292051219_Link changes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201408091801406_Category changes.cs" />
+    <Compile Include="Migrations\201408091801406_Category changes.Designer.cs">
+      <DependentUpon>201408091801406_Category changes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Application.cs" />
-    <Compile Include="Models\CategoryIndexViewModel.cs" />
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\ViewModels\CategoryIndexViewModel.cs" />
     <Compile Include="Models\HomeInputModel.cs" />
     <Compile Include="Models\Link.cs" />
     <Compile Include="NavigationRoutes\INavigationRouteFilter.cs" />
@@ -361,6 +367,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201407292051219_Link changes.resx">
       <DependentUpon>201407292051219_Link changes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408091801406_Category changes.resx">
+      <DependentUpon>201408091801406_Category changes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
